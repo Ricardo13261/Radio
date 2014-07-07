@@ -1,9 +1,24 @@
 
 public class Radio {
-	public void saludo(){
-		System.out.println("Hola Mundo");
-		System.out.println("pruebita1");
-		System.out.println("prueba3");
-		System.out.println("prueba4");
+	private Boolean banda;
+	private int estacionAM[];
+	private double estacionFM[];
+	private int contadorFM;
+	private int contadorAM;
+	
+	public Radio(){
+	estacionAM = new int [100];
+	estacionFM = new double [100];
+	contadorFM=0;
+	contadorAM=0;
+		for(double i=87.9;i<=107.9;i+=0.2){
+			estacionFM[contadorFM]=i;
+			contadorFM++;
+			}
+		for(int j=530;j<=1610;j+=10){
+			estacionAM[contadorAM]=j;
+			contadorAM++;
+		}
+		
 	}
 }
