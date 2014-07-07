@@ -1,8 +1,9 @@
 
 public class Radio {
-	private Boolean banda;
+	
 	private int estacionAM[];
 	private double estacionFM[];
+	private double favoritos[];
 	private int contadorFM;
 	private int contadorAM;
 	private int posicionAM;
@@ -11,8 +12,9 @@ public class Radio {
 	private double estacionActualFM;
 	
 	public Radio(){
-	estacionAM = new int [100];
-	estacionFM = new double [100];
+	estacionAM = new int [150];       //array de estaciones AM
+	estacionFM = new double [150];		//array de estaciones FM
+	favoritos= new double [15]; 			//array de favoritos
 	contadorFM=0;
 	contadorAM=0;
 	posicionAM= 0;
@@ -52,6 +54,22 @@ public class Radio {
 			posicionFM++;
 			return estacionActualFM;	
 		}
+	}
+	
+	public void Guardar(boolean apachado, int numero,boolean banda){
+		if (apachado==true && banda==true){  	//si apachado = true, el usuario guardo 
+												//si banda =true FM
+			favoritos[numero]=estacionActualFM;
+			
+		}else{									//de lo contrario AM
+			favoritos[numero]=estacionActualAM;
+		}
+	}
+	
+	public double Mostrar(boolean reproducir, int numero){
+			//el usuario quiere reproducir la emisora del favorito que el escogio
+			return favoritos[numero];
+		
 	}
 	
 	
