@@ -1,15 +1,14 @@
-
  /**
-   * @Radio.java  1.0 07/07/2014
+   * @Radio.java  1.0 06/07/2014
    *
    * Universidad del Valle de Guatemala.
-   * Seccion: 21 ED
+   * Seccion: 21 Estructura de Datos
    * Autor: Brandon Méndez Carné: 13087
-   *
-   * Radio: clase que tiene las caracteristicas de cualquier Radio
+   *		Ricardo Franco Carné: 13261
+   *		Samuel Maldonado Carné: 13153
+   * Radio: tiene todas las caracteristicas de un radio
    *
    */
-
 
 public class Radio {
 	public Radio() {

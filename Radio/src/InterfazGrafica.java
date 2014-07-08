@@ -5,7 +5,7 @@
    * Seccion: 21 Estructura de Datos
    * Autor: Brandon Méndez Carné: 13087
    *		Ricardo Franco Carné: 13261
-   *		Samuel Maldonado Carné: 13
+   *		Samuel Maldonado Carné: 13153
    * Interfaz gráfica: Gestiona los eventos del radio
    *
    */

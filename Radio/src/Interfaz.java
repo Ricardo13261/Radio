@@ -1,4 +1,14 @@
-
+ /**
+   * @InterfazGrafica.java  1.0 06/07/2014
+   *
+   * Universidad del Valle de Guatemala.
+   * Seccion: 21 Estructura de Datos
+   * Autor: Brandon Méndez Carné: 13087
+   *		Ricardo Franco Carné: 13261
+   *		Samuel Maldonado Carné: 13153
+   * Interfaz: posee todos los metodos utilizados para el buen funcionamiento
+   *
+   */
 public class Interfaz {
 	private int estacionAM[];
 	private double estacionFM[];
