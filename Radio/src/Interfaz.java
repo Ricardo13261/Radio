@@ -3,89 +3,52 @@
    *
    * Universidad del Valle de Guatemala.
    * Seccion: 21 Estructura de Datos
-   * Autor: Brandon Méndez Carné: 13087
-   *		Ricardo Franco Carné: 13261
-   *		Samuel Maldonado Carné: 13153
+   * Autor: Brandon Mï¿½ndez Carnï¿½: 13087
+   *		Ricardo Franco Carnï¿½: 13261
+   *		Samuel Maldonado Carnï¿½: 13153
    * Interfaz: posee todos los metodos utilizados para el buen funcionamiento
    *
    */
-public class Interfaz {
-	private int estacionAM[];
-	private double estacionFM[];
-	private double favoritos[];
-	private int contadorFM;
-	private int contadorAM;
-	private int posicionAM;
-	private int posicionFM;
-	private int estacionActualAM;
-	private double estacionActualFM;
+
+public interface Interfaz{
+	/**
+	  * Cambia la frecuencia de un radio comun
+	  * */
+	public void cambiarFrecuencia();
 	
-	public Interfaz(){
-	estacionAM = new int [150];       //array de estaciones AM
-	estacionFM = new double [150];		//array de estaciones FM
-	favoritos= new double [15]; 			//array de favoritos
-	contadorFM=0;
-	contadorAM=0;
-	posicionAM= 0;
-	posicionFM= 0;
-	estacionActualAM=0;
-		for(double i=87.9;i<=107.9;i+=0.2){
-			estacionFM[contadorFM]=i;
-			contadorFM++;
-			}
-		for(int j=530;j<=1610;j+=10){
-			estacionAM[contadorAM]=j;
-			contadorAM++;
-		}
-	}
+	/**
+	  * Apaga un radio
+	  * */
+	public void apagar();
 	
-	public int SeleccionoAM(){
-		if(posicionAM >108){
-			posicionAM=0;
-			estacionActualAM=estacionAM[posicionAM];
-			posicionAM++;
-			return estacionActualAM;
-		}else{
-			estacionActualAM=estacionAM[posicionAM];
-			posicionAM++;
-			return estacionActualAM;
-		}
-	}
+	/**
+	  * Enciende un radio
+	  * */
+	public void encender();
 	
-	public double SeleccionoFM(){
-		if(posicionFM>100){
-			posicionFM=0;
-			estacionActualFM=estacionFM[posicionFM];
-			posicionFM++;
-			return estacionActualFM;
-		}else{
-			estacionActualFM=estacionFM[posicionFM];
-			posicionFM++;
-			return estacionActualFM;	
-		}
-	}
+	/**
+	  * Guarda una estacion en una lista especifica de un radio
+	  * @param boton: el boton en donde quiere que se guarde
+	  * @param la estacion que quiere guardar
+	  * */
+	public void guardar(int boton, double estacion);
 	
-	public void Guardar(boolean apachado, int numero,boolean banda){
-		if (apachado==true && banda==true){  	//si apachado = true, el usuario guardo 
-												//si banda =true FM
-			favoritos[numero]=estacionActualFM;
-			
-		}else{									//de lo contrario AM
-			favoritos[numero]=estacionActualAM;
-		}
-	}
+	/**
+	  * Baja la estacion de un radio en cualquier frecuencia
+	  * */
+	public double bajarEstacion();
 	
-	public double Mostrar(boolean reproducir, int numero){
-			//el usuario quiere reproducir la emisora del favorito que el escogio
-			return favoritos[numero];
-		
-	}
-	public void apagar(){
-		System.out.println("APAGANDO..");
-	}
-	public void encender(){
-		System.out.println("HOLA JEFE :D");
-	}
+	/**
+	  * Sube la estacion de un radio en cualquier frecuencia
+	  * */
+	public double subirEstacion();
 	
+	/**
+	  * Saca una estacion guardada en una lista con un cierto indice que lo dictamino el boton
+	  * @param boton: donde esta guardada la estacion
+	  * */
+	public double sacar(int boton);
 }
+
+
 
