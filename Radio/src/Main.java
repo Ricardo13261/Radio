@@ -3,13 +3,12 @@
    *
    * Universidad del Valle de Guatemala.
    * Seccion: 21 Estructura de Datos
-   * Autor: Brandon Méndez Carné: 13087
-   *		Ricardo Franco Carné: 13261
-   *		Samuel Maldonado Carné: 13153
+   * Autor: Brandon Mï¿½ndez Carnï¿½: 13087
+   *		Ricardo Franco Carnï¿½: 13261
+   *		Samuel Maldonado Carnï¿½: 13153
    * Main: clase principal
    *
    */
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
