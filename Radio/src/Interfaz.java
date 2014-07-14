@@ -1,20 +1,18 @@
- /**
-   * @InterfazGrafica.java  1.0 06/07/2014
-   *
-   * Universidad del Valle de Guatemala.
-   * Seccion: 21 Estructura de Datos
-   * Autor: Brandon M�ndez Carn�: 13087
-   *		Ricardo Franco Carn�: 13261
-   *		Samuel Maldonado Carn�: 13153
-   * Interfaz: posee todos los metodos utilizados para el buen funcionamiento
-   *
-   */
-
+/**
+* @Interfaz.java  1.0 06/07/2014
+*
+* Universidad del Valle de Guatemala.
+* Seccion: 21 Estructura de datos
+* Autor: Brandon Méndez Carné: 13087
+*
+* Interfaz: Clase que tiene las funcionalidades de un radio
+*/
+   
 public interface Interfaz{
 	/**
 	  * Cambia la frecuencia de un radio comun
 	  * */
-	public void cambiarFrecuencia();
+	public void cambiarFrecuencia(boolean frecuencia);
 	
 	/**
 	  * Apaga un radio
@@ -48,6 +46,27 @@ public interface Interfaz{
 	  * @param boton: donde esta guardada la estacion
 	  * */
 	public double sacar(int boton);
+	
+	/**
+	  * Obtiene la frecuencia (Am o FM)
+	  * */
+	public boolean getFrecuencia();
+	
+	/**
+	  * Obtiene el estado Encendido true o apagado false
+	  * */
+	public boolean getEncendido();
+	
+	/**
+	  * Obtiene la estacion en AM
+	  * */
+	public double getEstacionAM();
+
+	/**
+	  * Obtiene la estacion en fM
+	  * */
+	public double getEstacionFM();
+	
 }
 
 
