@@ -1,12 +1,12 @@
- /**
+   /**
    * @InterfazGrafica.java  1.0 06/07/2014
    *
    * Universidad del Valle de Guatemala.
    * Seccion: 21 Estructura de Datos
-   * Autor: Brandon M�ndez Carn�: 13087
-   *		Ricardo Franco Carn�: 13261
-   *		Samuel Maldonado Carn�: 13153
-   * Interfaz gr�fica: Gestiona los eventos del radio
+   * Autor: Brandon MÃ©ndez CarnÃ©: 13087
+   *		Ricardo Franco
+   *		Samuel Maldonado
+   * Interfaz grÃ¡fica: Gestiona los eventos del radio
    *
    */
 //Importando librerias de java.
@@ -26,6 +26,9 @@ public class InterfazGrafica extends JPanel
 	private Radio radio;															//Atributo de tipo radio para tener sus caracteristicas
 	private JLabel lb,lblfrecuencia;												//Label que sirvio para un panel, para mostrar que esta sonando y la frecuencia.
 	private double estacionact;														//Contiene la estacion actual en un double
+	private boolean encendido;
+	private boolean frecuencia;
+	private double am,fm;
 
 	 /**
      * Constructor con un parametro que es un frame de control de errores
@@ -34,6 +37,10 @@ public class InterfazGrafica extends JPanel
 	public InterfazGrafica(JFrame v){
 		frameControl=v;																//Panel de control de errores
 		radio = new Radio();														//se crea el objeto
+		encendido=radio.getEncendido();
+		frecuencia=radio.getFrecuencia();
+		am=radio.getEstacionAM();
+		fm=radio.getEstacionFM();
 		//Construyendo paneles de la interfaz
 		JComponent panelBanner=panelBanner();										//Panel para el banner, la imagen del radio
 		JComponent panelEncendido=panelEncendido();									//Panel para el boton de encendido y apagado
@@ -50,6 +57,7 @@ public class InterfazGrafica extends JPanel
 		add(panelCambiaEstacion);
 		add(panelAgregarAFavoritos);
 		add(panelFavoritos);
+		
 	}	
 	
     /**
@@ -141,6 +149,7 @@ public class InterfazGrafica extends JPanel
 		panel.add(lb);
 		lblfrecuencia = new JLabel("");											//lbl que le dice al usuario en que frecuencia se encuentra
 		panel.add(lblfrecuencia);
+		escribeAMFM();
 		return panel;
 		
 	}
@@ -230,20 +239,27 @@ public class InterfazGrafica extends JPanel
 		String comando = e.getActionCommand();									//String del comando de accion			
 
 		if(comando.equals(comapag)){											//Encender o apagar radio
-			if(radio.isEncendido()){											//Si el radio esta encendido
+			if(encendido){											//Si el radio esta encendido
 				desactivaBotones();												//Se desactivan los botones	
-				radio.setEncendido(false);										//Se cambia el estado a apagado
+				encendido=false;
 				lb.setText("");													//Y Se limpian los lbl cuando se apaga el radio
 				lblfrecuencia.setText("");							
 			}else{																//Sino entonces se enciende el radio
 				activarBotones();												//Se activan los botones
-				radio.setEncendido(true);										//Se coloca la bandera en true es decir encendido.
+				encendido=true;
 			}
 		}
 		
-		if(comando.equals(comcambiarfrecuencia)){								//Estacion Previa
-			radio.cambiarFrecuencia();											//Se llama al metodo que cambia de AM a FM			
-			escribeAMFM();														//Se le muestra la frecuencia al usuario con un lbl
+		if(comando.equals(comcambiarfrecuencia)){								//Cambiar de frecuencia
+			if(frecuencia){
+				radio.cambiarFrecuencia(false);									//Se llama al metodo que cambia de AM a FM			
+				frecuencia=radio.getFrecuencia();
+				escribeAMFM();													//Se le muestra la frecuencia al usuario con un lbl
+			}else{	
+				radio.cambiarFrecuencia(true);									//Se llama al metodo que cambia de AM a FM			
+				frecuencia=radio.getFrecuencia();
+				escribeAMFM();
+			}
 		}
 		
 				
@@ -328,6 +344,7 @@ public class InterfazGrafica extends JPanel
         frame.setContentPane(this);												//Estableciendo el panel principal.
 		frame.setResizable(false);												//Bloqueando la maximizaciÃ³n de la ventana
 		
+		
 
 		frame.setDefaultCloseOperation (WindowConstants.DO_NOTHING_ON_CLOSE);	//Asegurandose de que el evento foco se valla al Panel principal
         frame.addWindowListener(new WindowAdapter() {							//El evento foco se centra en este panel no importa que
@@ -398,12 +415,14 @@ public class InterfazGrafica extends JPanel
 	  *  
 	  * */
 	public void escribeAMFM(){
-		if (radio.isFrecuencia()){												//Si isFrecuencia() me devuelve True es AM
+		if (frecuencia){												//Si isFrecuencia() me devuelve True es AM
 			lblfrecuencia.setText("AM");										//Se escribe en el lbl
-			lb.setText(String.valueOf(radio.getAm()));							//Se escribe la estacion
+			DecimalFormat df = new DecimalFormat("###.#");	        
+			lb.setText(String.valueOf(df.format(radio.getEstacionAM())));							//Se escribe la estacion
 		}else{																	//sino me devolvio FM y se escribe en el lbl
 			lblfrecuencia.setText("FM");
-			lb.setText(String.valueOf(radio.getFm()));
+			DecimalFormat df = new DecimalFormat("###.#");	        
+			lb.setText(String.valueOf(df.format(radio.getEstacionFM())));
 		}	
 	}
 	
@@ -412,10 +431,10 @@ public class InterfazGrafica extends JPanel
 	  *  
 	  * */
 	public double diceFrecuencia(){														
-		if(radio.isFrecuencia()){												//Si la frecuencia es TRUE la radio esta en AM
-			return estacionact=radio.getAm();									//Y regresa el numero de la estacion como doble	
+		if(radio.getFrecuencia()){												//Si la frecuencia es TRUE la radio esta en AM
+			return estacionact=radio.getEstacionAM();									//Y regresa el numero de la estacion como doble	
 		}else{																	//Sino regresa la estacion FM
-			return estacionact=radio.getFm();
+			return estacionact=radio.getEstacionFM();
 		}
 	}
 	
@@ -428,10 +447,10 @@ public class InterfazGrafica extends JPanel
 			DecimalFormat df = new DecimalFormat("###.#");	        
 			lb.setText(String.valueOf(df.format(radio.sacar(boton))));						//Se coloca en el lbl la estacion actual
 			if(radio.sacar(boton)%1==0){										//Se verifica si la estacion es entero quiere decir que es AM
-				radio.setFrecuencia(true);										//Se coloca la frecuencia en AM
+				frecuencia=true;
 				lblfrecuencia.setText("AM");									//Se escribe en el lbl que se esta en la frecuencia AM
 			}else{																//Sino quiere decir que es double
-				radio.setFrecuencia(false);										//Y se coloca la frecuencia en FM
+				frecuencia=false;
 				lblfrecuencia.setText("FM");									//Se pone en el lbl en que frecuencia se encuentra
 			}
 		}else{
@@ -443,12 +462,12 @@ public class InterfazGrafica extends JPanel
 	  * @param boton: el boton en que se encuentra cuando se quiere actualizar la frecuencia
 	  * */	
 	public void actualizaFrecuencia(int boton){	
-		if(radio.isFrecuencia()){												//Si la frecuencia es true es AM
+		if(radio.getFrecuencia()){												//Si la frecuencia es true es AM
 			estacionact=radio.sacar(boton);										//se saca la frecuencia en la posicion de la lista de favoritos								
-			radio.setAm((int) estacionact);										//se modifica la estacion actual AM
+			am=(int)estacionact;
 		}else{																	//Sino quiere decir que la frecuencia es FM
 			estacionact=radio.sacar(boton);										//Se saca la frecuencia en la posicion del boton
-			radio.setFm(estacionact);											//Se cambia el valor de la estacion en FM
+			fm=(int)estacionact;
 		}
 	}
 	
