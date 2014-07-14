@@ -1,12 +1,11 @@
  /**
-   * @Radio.java  1.0 06/07/2014
+   * @Radio.java  1.0 07/07/2014
    *
    * Universidad del Valle de Guatemala.
-   * Seccion: 21 Estructura de Datos
-   * Autor: Brandon M�ndez Carn�: 13087
-   *		Ricardo Franco Carn�: 13261
-   *		Samuel Maldonado Carn�: 13153
-   * Radio: tiene todas las caracteristicas de un radio
+   * Seccion: 21 ED
+   * Autor: Brandon Méndez Carné: 13087
+   *
+   * Radio: clase que tiene las caracteristicas de cualquier Radio
    *
    */
 
@@ -15,7 +14,7 @@ public class Radio implements Interfaz {
 	/*ATRIBUTOS*/		
 	private boolean encendido, frecuencia;											//Dice si esta encendido a apagado y la frecuencia AM o FM	
 	private double favoritos[],fm;													//Arreglos Am y FM que contendran las frecuencias.
-	private int am;																	//AM que contendra las estaciones en esa frecuencia
+	private double am;																	//AM que contendra las estaciones en esa frecuencia
 
 	/**
 	  * Constructor que recibe todos los atributos y que el usuario le asigna valores. 
@@ -25,7 +24,7 @@ public class Radio implements Interfaz {
 	  * @param fm
 	  * @param am
 	  * */
-	public Radio(boolean encendido, boolean frecuencia, double[] favoritos, double fm, int am,int indiceArregloAM, int indiceArregloFM) {
+	public Radio(boolean encendido, boolean frecuencia, double[] favoritos, double fm, double am) {
 		this.encendido = encendido;
 		this.frecuencia = frecuencia;
 		this.favoritos = favoritos;
@@ -37,17 +36,17 @@ public class Radio implements Interfaz {
 	  * */
 	public Radio() {
 		frecuencia=false;
-		encendido = false;
+		encendido=true;
 		fm = 87.9;
-		am = 530;
+		am = 530.0;
 		favoritos=new double[12];
 	}
 	
 	/**
 	  * cambia la frecuencia a su valor logico contrario
 	  * */
-	public void cambiarFrecuencia(){
-		frecuencia=!frecuencia;
+	public void cambiarFrecuencia(boolean frecuencia){
+		this.frecuencia=!frecuencia;
 	}
 
 	/**
@@ -126,41 +125,20 @@ public class Radio implements Interfaz {
 	/**
 	  * Sets y gets de la clase
 	  * */
-	public boolean isEncendido() {
+	public boolean getEncendido() {
 		return encendido;
 	}
-	public void setEncendido(boolean encendido) {
-		this.encendido = encendido;
-	}
 
-
-	public boolean isFrecuencia() {
+	public boolean getFrecuencia() {
 		return frecuencia;
 	}
-	public void setFrecuencia(boolean frecuencia) {
-		this.frecuencia = frecuencia;
-	}
 
-
-	public double[] getFavoritos() {
-		return favoritos;
-	}
-	public void setFavoritos(double[] favoritos) {
-		this.favoritos = favoritos;
-	}
-
-	public double getFm() {
+	public double getEstacionFM() {
 		return fm;
 	}
-	public void setFm(double fm) {
-		this.fm = fm;
-	}
 
-	public int getAm() {
+	public double getEstacionAM() {
 		return am;
-	}
-	public void setAm(int am) {
-		this.am = am;
 	}
 	//Fin del programa
 }
