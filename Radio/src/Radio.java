@@ -3,8 +3,9 @@
    *
    * Universidad del Valle de Guatemala.
    * Seccion: 21 ED
-   * Autor: Brandon Méndez Carné: 13087
-   *
+   * @author Brandon Méndez Carné: 13087
+   * @author Ricardo Franco
+   * @author Samuel Maldonado
    * Radio: clase que tiene las caracteristicas de cualquier Radio
    *
    */
@@ -46,7 +47,7 @@ public class Radio implements Interfaz {
 	  * cambia la frecuencia a su valor logico contrario
 	  * */
 	public void cambiarFrecuencia(boolean frecuencia){
-		this.frecuencia=!frecuencia;
+		this.frecuencia=frecuencia;
 	}
 
 	/**
@@ -125,19 +126,19 @@ public class Radio implements Interfaz {
 	/**
 	  * Sets y gets de la clase
 	  * */
-	public boolean getEncendido() {
+	public boolean getEncendido() {													//Obtiene el estado del radio on-off
 		return encendido;
 	}
 
-	public boolean getFrecuencia() {
+	public boolean getFrecuencia() {												//Obtiene la frecuencia es decir Am o FM
 		return frecuencia;
 	}
 
-	public double getEstacionFM() {
+	public double getEstacionFM() {													//Obtiene el numero de la estacion FM
 		return fm;
 	}
-
-	public double getEstacionAM() {
+	
+	public double getEstacionAM() {													//Obtiene la estacion en AM
 		return am;
 	}
 	//Fin del programa
