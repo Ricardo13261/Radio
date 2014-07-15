@@ -1,10 +1,11 @@
 /**
-* @Interfaz.java  1.0 06/07/2014
+* @Interfaz.java  1.0 15/07/2014
 *
 * Universidad del Valle de Guatemala.
 * Seccion: 21 Estructura de datos
-* Autor: Brandon Méndez Carné: 13087
-*
+   * @author Brandon Méndez Carné: 13087
+   * @author Ricardo Franco
+   * @author Samuel Maldonado
 * Interfaz: Clase que tiene las funcionalidades de un radio
 */
    
@@ -68,6 +69,3 @@ public interface Interfaz{
 	public double getEstacionFM();
 	
 }
-
-
-
